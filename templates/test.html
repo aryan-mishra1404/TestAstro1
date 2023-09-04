@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login_Call-Astro</title>
+    <!-- <link rel="stylesheet" href="/static/test.css"> -->
+</head>
+
+<body>
+
+    <div>
+        <button type="submit" id="flogin">FaceBook</button>
+    </div>
+
+    
+<script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '980141249882307',
+        cookie     : true,
+        xfbml      : true,
+        version    : '{api-version}'
+      });
+        
+      FB.AppEvents.logPageView();   
+        
+    };
+  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+
+     
+FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+});
+
+
+<fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
+
+
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
+  </script>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+        // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
+        import {getAuth, signInWithPopup, FacebookAuthProvider } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyADytzqzaRjnmWLFlmJGtp87PMEeUGKCOw",
+            authDomain: "login-authentication-a9d33.firebaseapp.com",
+            databaseURL: "https://login-authentication-a9d33-default-rtdb.firebaseio.com",
+            projectId: "login-authentication-a9d33",
+            storageBucket: "login-authentication-a9d33.appspot.com",
+            messagingSenderId: "487238476578",
+            appId: "1:487238476578:web:40dcb05c03acfb5c893b7b"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        // const analytics = getAnalytics(app);
+        const fprovider = new FacebookAuthProvider(app);
+
+        document.getElementById('flogin').addEventListener('click', () => {
+
+signInWithPopup(auth, fprovider)
+    .then((result) => {
+        // The signed-in user info.
+        alert("Facebook Button Clicked");
+        const user = result.user;
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const accessToken = credential.accessToken;
+
+        alert("Welcome " + user.displayName);
+        console.log(user);
+        // window.location.assign("/protected");
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+    })
+    .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = FacebookAuthProvider.credentialFromError(error);
+        console.log(error)
+    });
+})
+      </script>
+</body>
+
+</html>

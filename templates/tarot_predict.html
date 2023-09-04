@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Tarot Card</title>
+    <link rel="stylesheet" href="/static/tarot_predict.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <div class="nav-home margin-left onhover">
+                <a href="/protected" class="removealink">
+                    <p onclick="gotoHome()">Home</p>
+                </a>
+            </div>
+
+            <div class="nav-numerology margin-left onhover">
+                <a href="/numerology" class="removealink">
+                    <p onclick="gotoNumerology()">Numerology</p>
+                </a>
+            </div>
+
+            <div class="nav-tarot margin-left onhover">
+                <a href="/tarot" class="removealink">
+                    <p onclick="gotoTarot()">Tarot</p>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="nav-right">
+            <div class="nav-logout margin-right onhover">
+                <a href="/" class="removealink">
+                    <p onclick="Logout()">Logout</p>
+                </a>
+            </div>
+
+            <div class="nav-lang margin-right ">
+                <label class="onhover" for="lang">Lang</label>
+                <select name="lang" id="lang">
+                    <option id="English" value="English">English</option>
+                    <option id="Hindi" value="Hindi">Hindi</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <div class="card-heading">
+        <h1 id="card-name">ABC</h1>
+    </div>
+
+    <div class="tarot-cards">
+        <div class="card-image">
+            <img id="tc-img" src="/static/image/cards.png" alt="card-image">
+        </div>
+        <div class="card-points"></div>        
+    </div>
+    
+    <div class="card-desc">
+        <h2 id="prediction-heading">Prediction Upright</h2>
+        <p id="prediction-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit rem inventore illum recusandae soluta id, explicabo eum sunt! Beatae harum optio atque quos, magni laborum ut culpa? Exercitationem nulla voluptatum saepe reprehenderit quidem excepturi ut id, repellat adipisci iste ratione expedita minus ad ipsam recusandae quos obcaecati iure necessitatibus laboriosam.</p>
+    </div> 
+    <script src="/static/tarot_predict.js"></script>
+
+</body>
+</html>

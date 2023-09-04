@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TarotPrediction</title>
+    <link rel="stylesheet" href="/static/tarot.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <div class="nav-home margin-left onhover">
+                <a href="/protected" class="removealink">
+                    <p onclick="gotoHome()">Home</p>
+                </a>
+            </div>
+
+            <div class="nav-numerology margin-left onhover">
+                <a href="/numerology" class="removealink">
+                    <p onclick="gotoNumerology()">Numerology</p>
+                </a>
+            </div>
+
+            <div class="nav-tarot margin-left onhover">
+                <a href="/tarot" class="removealink">
+                    <p onclick="gotoTarot()">Tarot</p>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="nav-right">
+            <div class="nav-logout margin-right onhover">
+                <a href="/" class="removealink">
+                    <p onclick="Logout()">Logout</p>
+                </a>
+            </div>
+
+            <div class="nav-lang margin-right ">
+                <label class="onhover" for="lang">Lang</label>
+                <select name="lang" id="lang">
+                    <option id="English" value="English">English</option>
+                    <option id="Hindi" value="Hindi">Hindi</option>
+                </select>
+            </div>
+        </div>
+
+    </nav>
+
+    <div class="tarot-cards">
+        <div class="heading">
+            <h2 id="cardNum">Tarot Prediction</h2>
+        </div>
+
+        <div class="cards" onclick="gotoTarot_Prediction()">
+            <div class="card-img">
+                <img id="num-img" src="/static/image/tarot-img1.webp" alt="cards-image ">
+            </div>
+
+            <div class="card-desc">
+                <h2 id="cardNumDetail">Click to get your Card</h2>
+                <p id="predictionUp"></p>
+                <p id="predictionDown"></p>
+            </div>
+
+        </div>
+
+    </div>
+    <script>
+        var lang = document.getElementById('lang');
+var lang_value = lang.value
+console.log(lang_value)
+lang_value = localStorage.getItem('lang')
+console.log(lang_value)
+document.getElementById(lang_value).setAttribute('selected', true)
+
+lang.addEventListener('change',()=>{
+    lang_value= lang.value;
+    console.log("On change: "+ lang_value);
+    localStorage.setItem('lang', lang_value)
+})
+
+        function gotoTarot_Prediction() {
+            window.location = "/tarot-predict"
+        }
+    </script>
+</body>
+
+</html>

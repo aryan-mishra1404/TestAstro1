@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form_call-astro</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-left">
+            <div class="nav-home margin-left onhover">
+                <a href="/protected" class="removealink">
+                    <p onclick="gotoHome()">Home</p>
+                </a>
+            </div>
+
+            <div class="nav-numerology margin-left onhover">
+                <a href="/numerology" class="removealink">
+                    <p onclick="gotoNumerology()">Numerology</p>
+                </a>
+            </div>
+
+            <div class="nav-tarot margin-left onhover">
+                <a href="/tarot" class="removealink">
+                    <p onclick="gotoTarot()">Tarot</p>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="nav-right">
+            <div class="nav-logout margin-right onhover">
+                <a href="/" class="removealink">
+                    <p onclick="Logout()">Logout</p>
+                </a>
+            </div>
+
+            <div class="nav-lang margin-right ">
+                <label class="onhover" for="lang">Lang</label>
+                <select name="lang" id="lang">
+                    <option value="English">English</option>
+                    <option value="Hindi">Hindi</option>
+                </select>
+            </div>
+        </div>
+
+    </nav>
+
+    <div class="astrology">
+        <div class="numerology">
+            <div class="numerology-image">
+                <img src="/static/image/numerology-Img.jpg" alt="numeroimg">
+            </div>
+            <div class="numerology-heading">
+                <h2 onclick="gotoNumerology()">Know Your Numerology Prediction</h2>
+            </div>
+        </div>
+
+        <div class="numerology">
+            <div class="numerology-image">
+                <img src="/static/image/tarot-img.jpg" alt="taortimg">
+            </div>
+            <div class="numerology-heading">
+                <h2 onclick="gotoTarot()">Know Your Tarot Prediction</h2>
+            </div>
+         </div>
+    </div>
+    
+
+    <!-- adding javascript -->
+    <script src="/static/script.js"></script>
+</body>
+
+</html>

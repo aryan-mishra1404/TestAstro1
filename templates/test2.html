@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <Button id="flogin">Facebook</Button>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+        import { getAuth, signInWithPopup, FacebookAuthProvider } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyASeAN2F-7BWRsul2e_V-JKghenbj4qUDk",
+            authDomain: "facebookauthentication-fffb5.firebaseapp.com",
+            projectId: "facebookauthentication-fffb5",
+            storageBucket: "facebookauthentication-fffb5.appspot.com",
+            messagingSenderId: "38034513652",
+            appId: "1:38034513652:web:dc70d16beb1df4ffed48a1",
+            measurementId: "G-CDYN1EJZ6B"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        // const database = getDatabase(app);
+        const auth = getAuth(app);
+        const fprovider = new FacebookAuthProvider(app);
+
+
+        
+
+//   window.fbAsyncInit = function() {
+//     FB.init({
+//       appId      : '6572896836123797',
+//       cookie     : true,
+//       xfbml      : true,
+//       version    : 'v17.0'
+//     });
+      
+//     FB.AppEvents.logPageView();   
+      
+//   };
+
+//   (function(d, s, id){
+//      var js, fjs = d.getElementsByTagName(s)[0];
+//      if (d.getElementById(id)) {return;}
+//      js = d.createElement(s); js.id = id;
+//      js.src = "https://connect.facebook.net/en_US/sdk.js";
+//      fjs.parentNode.insertBefore(js, fjs);
+//    }(document, 'script', 'facebook-jssdk'));
+
+   
+// FB.getLoginStatus(function(response) {
+//     statusChangeCallback(response);
+// });
+
+
+// function checkLoginState() {
+//   FB.getLoginStatus(function(response) {
+//     statusChangeCallback(response);
+//   });
+// }
+
+        document.getElementById('flogin').addEventListener('click', () => {
+
+            signInWithPopup(auth, fprovider)
+                .then((result) => {
+                    // The signed-in user info.
+                    alert("Facebook Button Clicked");
+                    const user = result.user;
+                    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+                    const credential = FacebookAuthProvider.credentialFromResult(result);
+                    const accessToken = credential.accessToken;
+
+                    alert("Welcome " + user.displayName);
+                    console.log(user);
+                    // window.location.assign("/protected");
+                    // IdP data available using getAdditionalUserInfo(result)
+                    // ...
+                })
+                .catch((error) => {
+                    // Handle Errors here.
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    // The email of the user's account used.
+                    const email = error.customData.email;
+                    // The AuthCredential type that was used.
+                    const credential = FacebookAuthProvider.credentialFromError(error);
+                    console.log(error)
+                });
+        })
+
+    </script>
+</body>
+
+</html>

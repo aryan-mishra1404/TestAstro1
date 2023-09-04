@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login_Call-Astro</title>
+    <link rel="stylesheet" href="/static/login.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- <script>
+        function onSubmit(token) {
+          document.getElementById("login-form").submit();
+        }
+      </script> -->
+</head>
+
+<body>
+    <div class="auth-form">
+
+        <!--<div class="signup" id="signup-div">
+            <div class="form-heading">
+                <h2 id="form-heading">Sign Up</h2>
+            </div>
+
+            <form class="signup-form">
+                <div class="signup-box">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" required placeholder="Enter your Full Name">
+                </div>
+                <div class="signup-box">
+                    <label for="email">Email</label>
+                    <input type="semail" name="semail" id="semail" required placeholder="Enter your Email Id">
+                </div>
+                <div class="signup-box">
+                    <label for="password">Password</label>
+                    <input type="password" name="spassword" id="spassword" required placeholder="Enter your Password">
+                </div>
+                <div class="signup-box">
+                    <label for="password">Confirm Password</label>
+                    <input type="password" name="cpassword" id="cpassword" required placeholder="Confirm Password">
+                </div>
+                <div class="signup-button" id="signup-button">
+                    <p id="signup-info">Don't have an account? <a onclick="gotoSignUp()" id="signuplink">SignUp</a></p>
+                    <button type="submit" id="signup">SignUp</button>
+                </div>
+                
+                
+            </form>
+        </div>
+       
+         <div class="login" id="login-div">
+            <div class="form-heading">
+                <h2 id="form-heading">Login</h2>
+            </div>
+            <form action="" class="login-form">
+                <div class="login-box">
+                    <input type="email" name="email" id="email" required placeholder="Enter your Email Id">
+                </div>
+                <div class="login-box">
+                    <input type="password" name="password" id="password" required placeholder="Enter your Password">
+                </div>
+                <div class="g-recaptcha" data-sitekey="6LfLq-InAAAAAHQXfK76bJtAoBGRKTZaZdpsPCaR"></div>
+                <div class="login-button">
+                    <button type="submit" id="login">Login</button>
+                </div>
+            </form>
+            <div id="other-buttons">
+                <div class="google-button">
+                    <div class="button-img">
+                        <img src="/static/image/google-icon.png"></img>
+                    </div>
+                    <button type="submit" id="glogin">Google</button>
+                </div>
+                <div class="facebook-button">
+                    <div class="button-img">
+                        <img src="/static/image/facebook-logo.png"></img>
+                    </div>
+                    <button type="submit" id="flogin">Facebook</button>
+                </div>
+            </div> 
+        </div> -->
+
+
+
+
+
+        <form class="form">
+            <div class="form-heading">
+                <h2 id="form-heading">Login Up</h2>
+            </div>
+
+            <div class="signup" id="signup-div">
+                <div class="signup-box">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name"  placeholder="Enter your Full Name">
+                </div>
+                <div class="signup-box">
+                    <label for="email">Email</label>
+                    <input type="semail" name="semail" id="semail"  placeholder="Enter your Email Id">
+                </div>
+                <div class="signup-box">
+                    <label for="password">Password</label>
+                    <input type="password" name="spassword" id="spassword"  placeholder="Enter your Password">
+                </div>
+                <div class="signup-box">
+                    <label for="password">Confirm Password</label>
+                    <input type="password" name="cpassword" id="cpassword"  placeholder="Confirm Password">
+                </div>
+            </div>
+
+            <div class="login" id="login-div">
+                <div class="login-box">
+                    <input type="email" name="email" id="email" required placeholder="Enter your Email Id">
+                </div>
+
+                <div class="login-box">
+                    <input type="password" name="password" id="password" required placeholder="Enter your Password">
+                </div>
+            </div>
+
+
+            <div class="login-button">
+                <button type="submit" id="login">Login</button>
+            </div>
+
+            <div class="signup-button" id="signup-button">
+                <p id="signup-info">Don't have an account? <a onclick="gotoSignUp()" id="signuplink">SignUp</a></p>
+                <button type="submit" id="signup">SignUp</button>
+            </div>
+
+            <div id="other-buttons">
+                <div class="google-button">
+                    <div class="button-img">
+                        <img src="/static/image/google-icon.png"></img>
+                    </div>
+                    <button type="submit" id="glogin">Google</button>
+                </div>
+                <div class="facebook-button">
+                    <div class="button-img">
+                        <img src="/static/image/facebook-logo.png"></img>
+                    </div>
+                    <button type="submit" id="flogin">Facebook</button>
+                </div>
+            </div>
+
+
+        </form>
+        <div class="g-recaptcha gcaptcha" data-sitekey="6LfLq-InAAAAAHQXfK76bJtAoBGRKTZaZdpsPCaR"></div>
+
+    </div>
+
+    <script type="module">
+        let checkLogin = false;
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+        // import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+        // import { signInWithRedirect, getRedirectResult, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+        import { signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+        import { FacebookAuthProvider } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+
+
+        const facebook_firebaseConfig = {
+            apiKey: "AIzaSyCG3dFF2caxazANtMG854VqM99sGPgMAfc",
+            authDomain: "fb-login-e4242.firebaseapp.com",
+            projectId: "fb-login-e4242",
+            storageBucket: "fb-login-e4242.appspot.com",
+            messagingSenderId: "25298657476",
+            appId: "1:25298657476:web:a5aa307f91bb6257f8e991",
+            measurementId: "G-KJQDDEL8K7"
+        };
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyADytzqzaRjnmWLFlmJGtp87PMEeUGKCOw",
+            authDomain: "login-authentication-a9d33.firebaseapp.com",
+            databaseURL: "https://login-authentication-a9d33-default-rtdb.firebaseio.com",
+            projectId: "login-authentication-a9d33",
+            storageBucket: "login-authentication-a9d33.appspot.com",
+            messagingSenderId: "487238476578",
+            appId: "1:487238476578:web:40dcb05c03acfb5c893b7b"
+        };
+
+        // Initialize Firebase
+        const app =initializeApp(firebaseConfig)
+        const auth = getAuth(app)
+        const gprovider = new GoogleAuthProvider(app);
+
+        const fapp = initializeApp(facebook_firebaseConfig,"secondary");
+        const fauth = getAuth(fapp);
+        const fprovider = new FacebookAuthProvider(fapp);
+        // const database = getDatabase(app);
+
+        const signup = document.getElementById('signup');
+        if(signup.style.display!="none"){
+            signup.addEventListener('click', (event) => {
+            event.preventDefault()
+            let semail = document.getElementById('semail').value;
+            let spassword = document.getElementById('spassword').value;
+            let cpassword = document.getElementById('cpassword').value;
+
+            if (spassword == cpassword) {
+                createUserWithEmailAndPassword(auth, semail, spassword)
+                    .then(async (userCredential) => {
+                        // Signed in 
+                        const user = userCredential.user;
+                        console.log(user)
+                        await sendEmailVerification(auth.currentUser)
+                            .then(() => {
+                                alert("Verification link is sent to your Email Id.")
+                            });
+                        // console.log(user.emailVerified);
+
+                        if (user.emailVerified) {
+                            alert("Successful Registered");
+                        }
+                        window.location.reload();
+
+
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        console.log(errorMessage)
+                        alert(errorMessage);
+                        window.location.reload();
+
+                    });
+            }
+
+            else {
+                alert("Passwords dont match")
+            }
+
+        });
+        }
+        
+
+        const login = document.getElementById('login');
+        login.addEventListener('click', (event) => {
+            event.preventDefault()
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    console.log(user);
+                    localStorage.setItem("uid", user.uid)
+                    console.log(user.uid)
+                    if (user.emailVerified) {
+                        alert("Successful login");
+                        window.location.assign("/protected");
+                    }
+                    else {
+                        alert("Email Verification is Pending")
+                    }
+
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorMessage)
+                    alert(errorMessage);
+
+                });
+
+            // window.location.assign("/protected")
+        });
+
+        document.getElementById("glogin").addEventListener('click', (event) => {
+            event.preventDefault()
+            // alert("value is"+checkLogin)
+            signInWithPopup(auth, gprovider)
+                .then((result) => {
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    const credential = GoogleAuthProvider.credentialFromResult(result);
+                    const token = credential.accessToken;
+                    // The signed-in user info.
+                    const user = result.user;
+                    console.log(user)
+                    localStorage.setItem("uid", user.uid)
+                    console.log(user.uid)
+                    alert("Successful login");
+                    window.location.assign("/protected");
+                    // IdP data available using getAdditionalUserInfo(result)
+                    // ...
+                }).catch((error) => {
+                    // Handle Errors here.
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    // The email of the user's account used.
+                    const email = error.customData.email;
+                    // The AuthCredential type that was used.
+                    const credential = GoogleAuthProvider.credentialFromError(error);
+                    // ...
+                });
+        })
+
+        document.getElementById('flogin').addEventListener('click', () => {
+
+            signInWithPopup(fauth, fprovider)
+                .then((result) => {
+                    // The signed-in user info.
+                    alert("Facebook Button Clicked");
+                    const user = result.user;
+                    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+                    const credential = FacebookAuthProvider.credentialFromResult(result);
+                    const accessToken = credential.accessToken;
+
+                    alert("Welcome " + user.displayName);
+                    console.log(user);
+                    window.location.assign("/protected");
+                    // IdP data available using getAdditionalUserInfo(result)
+                    // ...
+                })
+                .catch((error) => {
+                    // Handle Errors here.
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    // The email of the user's account used.
+                    const email = error.customData.email;
+                    // The AuthCredential type that was used.
+                    const credential = FacebookAuthProvider.credentialFromError(error);
+                    console.log(error)
+                });
+        })
+
+    </script>
+
+    <script src="/static/login.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Know Moolank</title>
+    <link rel="stylesheet" href="/static/numerology_prediction.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <div class="nav-home margin-left onhover">
+                <a href="/protected" class="removealink">
+                    <p onclick="gotoHome()">Home</p>
+                </a>
+            </div>
+
+            <div class="nav-numerology margin-left onhover">
+                <a href="/numerology" class="removealink">
+                    <p onclick="gotoNumerology()">Numerology</p>
+                </a>
+            </div>
+
+            <div class="nav-tarot margin-left onhover">
+                <a href="/tarot" class="removealink">
+                    <p onclick="gotoTarot()">Tarot</p>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="nav-right">
+            <div class="nav-logout margin-right onhover">
+                <a href="/" class="removealink">
+                    <p onclick="Logout()">Logout</p>
+                </a>
+            </div>
+
+            <div class="nav-lang margin-right ">
+                <label class="onhover" for="lang">Lang</label>
+                <select name="lang" id="lang">
+                    <option id="English" value="English">English</option>
+                    <option id="Hindi" value="Hindi">Hindi</option>
+                </select>
+            </div>
+        </div>
+
+    </nav>
+
+    <div class="numerology-report">
+        <div class="report-heading">
+            <h1>Your Numerology Report</h1>
+        </div>
+
+        <div class="report-header">
+            
+            <div class="header-content">
+                <h2 ><span id="Moolank">2</span></h2>
+                <p class="numerology-content" >Moolank Number</p>
+            </div>
+            <div class="header-content">
+                <h2 style="color:rgb(212, 187, 44);"><span id="Bhagyank">2</span></h2>
+                <p class="numerology-content">Bhagyank Number</p>
+            </div>
+            <div class="header-content">
+                <h2  style="color:rgb(57, 69, 240);"><span>9</span></h2>
+                <p class="numerology-content">Name Number</p>
+            </div>
+        </div>
+    
+        <div class = "report-body">
+           
+            <div class="body-content">
+                <p class="numerology-content">Name</p>
+                <h2  style="color:rgba(17, 15, 13, 0.907);"><span id="numerology_name"></span></h2>
+            </div>
+            <div class="body-content">
+                <p class="numerology-content">Date Of Birth</p>
+                <h2  style="color:rgba(16, 12, 5, 0.885);"><span id="numerology_date"></span></h2>
+            </div>
+            <div class="body-content">
+                <p class="numerology-content">Favourable Sign</p>
+                <h2  style="color:rgb(194, 133, 21);"><span>Cah2ricorn</span></h2>
+            </div>
+            <div class="body-content">
+                <p class="numerology-content">Favourable Alphabets</p>
+                <h2  style="color:rgb(194, 133, 21);"><span>D,M,V</span></h2>
+            </div>
+            <div class="body-content">
+                <p class="numerology-content">Gemstone</p>
+                <h2  style="color:rgb(41, 75, 167);"><span>Hessonite [Gomed] (Colored)</span></h2>
+            </div>
+            <div class="body-content">
+                <p class="numerology-content">Favourable Day(s)</p>
+                <h2  style="color:rgb(41, 75, 167);"><span>Saturday, Sunday, Monday</span></h2>
+            </div>
+            <div class="body-content">
+                <p class="numerology-content">Favourable Number</p>
+                <h2 ><span>4</span></h2>
+            </div>
+            <div class="body-content">
+                <p class="numerology-content">Direction</p>
+                <h2 ><span>East[poorva]</span></h2>
+            </div>
+            <div class="body-content">
+                <p class="numerology-content">Auspicious Colour</p>
+                <h2  style="color:rgb(41, 75, 167);"><span>Blue</span></h2>
+            </div>
+            <div class="body-content">
+                <p class="numerology-content">Ruling planet</p>
+                <h2  style="color:rgb(41, 75, 167);"><span>Rahu (Dragon's Head)</span></h2>
+            </div>
+            <div class="body-content">
+                <p class="numerology-content">God/Goddess</p>
+                <h2 ><span>Goddess Durga</span></h2>
+            </div>
+            <div class="body-content">
+                <p class="numerology-content">Fast</p>
+                <h2 ><span>Saturday</span></h2>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- <h1>Your Numerology Report</h1> -->
+    <div class="output">
+        <!-- <h2 id="output-heading"> Hi <span id="numerology_name"></span>,</h2> -->
+        <div class="numerology_details">
+            <div class="moolank_details">
+                <h4>Your Moolank: <span id="moolank"></span></h4>
+                <h4>Your Moolank Prediction <br> <span id="moolankPrediction"></span></h4>
+            </div>
+        </div>
+
+        <div class="numerology_details">
+            <div class="bhagyank_details">
+                <h4>Your Bhagyank: <span id="bhagyank"></span></h4>
+                <h4>Your Bhagyank Prediction<br> <span id="bhagyankPrediction"></span></h4>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="namank">
+
+        <div class="namank-heading">
+            <h2>Your Namank</h2>
+        </div>
+
+        <div class="namank-details">
+
+            <div class="chald-numerology">
+                <div class="details-heading">
+                    <h3>Chaldean Name Numerology</h3>
+                </div>
+
+                <table class="namank-numerology">
+                    <tr>
+                        <th class="component-heading">Destiny Number</th>
+                        <th class="component-heading">Heart Number</th>
+                        <th class="component-heading">Personality Number</th>
+                    </tr>
+
+                    <tr id="component-desc">
+                        <td id="destiny_num_chald">1</td>
+                        <td id="soul_num_chald">2</td>
+                        <td id="dream_num_chald">3</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <div class="pythagorean-numerology">
+                <div class="details-heading">
+                    <h3>Pythagorean Name Numerology</h3>
+                </div>
+
+                <table class="namank-numerology">
+                    <tr>
+                        <th class="component-heading">Destiny Number</th>
+                        <th class="component-heading">Heart Number</th>
+                        <th class="component-heading">Personality Number</th>
+                    </tr>
+
+                    <tr id="component-desc">
+                        <td id="destiny_num">1</td>
+                        <td id="soul_num">2</td>
+                        <td id="dream_num">3</td>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="LoShuGrid">
+        <div class="grid-heading">
+            <h2>Lo-Shu-Grid Numerology</h2>
+        </div>
+
+        <div class="grid-container">
+
+            <div class="grid-item">
+                <p id="4"> <sup class="four"></sup> </p>
+            </div>
+            <div class="grid-item">
+                <p id="9"> <sup class="nine"></sup> </p>
+            </div>
+            <div class="grid-item">
+                <p id="2"> <sup class="two"></sup> </p>
+            </div>
+            <div class="grid-item">
+                <p id="3"> <sup class="three"></sup> </p>
+            </div>
+            <div class="grid-item">
+                <p id="5"> <sup class="five"></sup> </p>
+            </div>
+            <div class="grid-item">
+                <p id="7"> <sup class="seven"></sup> </p>
+            </div>
+            <div class="grid-item">
+                <p id="8"> <sup class="eight"></sup> </p>
+            </div>
+            <div class="grid-item">
+                <p id="1"> <sup class="one"></sup> </p>
+            </div>
+            <div class="grid-item">
+                <p id="6"> <sup class="six"></sup> </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/numerology_prediction.js"></script>
+</body>
+
+</html>
